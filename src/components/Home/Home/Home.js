@@ -19,7 +19,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/postList')
+        fetch('https://blooming-tor-90457.herokuapp.com/postList')
             .then(res => res.json())
             .then(data => setPosts(data));
         fakeRequest().then(() => {

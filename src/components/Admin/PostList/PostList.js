@@ -15,7 +15,7 @@ const PostList = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/postList')
+        fetch('https://blooming-tor-90457.herokuapp.com/postList')
             .then(res => res.json())
             .then(data => setBlogPosts(data));
         fakeRequest().then(() => {
@@ -30,7 +30,7 @@ const PostList = () => {
     const deleteBlogPost = (id) => {
         const loading = toast.loading('Please wait...!');
 
-        fetch(`http://localhost:5000/deleteBlogPost/${id}`, {
+        fetch(`https://blooming-tor-90457.herokuapp.com/deleteBlogPost/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

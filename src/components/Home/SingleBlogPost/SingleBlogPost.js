@@ -12,7 +12,7 @@ const SingleBlogPost = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singleBlogPost/${id}`)
+        fetch(`https://blooming-tor-90457.herokuapp.com/singleBlogPost/${id}`)
             .then(res => res.json())
             .then(data => setBlogPost({
                 title: data.title,

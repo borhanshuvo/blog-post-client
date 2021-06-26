@@ -5,19 +5,21 @@ import { UserContext } from '../../../App';
 import './Login.css';
 import Navbar from '../../Navbar/Navbar';
 import { useHistory, useLocation } from 'react-router';
+import infoEmoji from '../../../images/info-emoji.svg'
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [adminDetails, setAdminsDetails] = useState([]);
     const [error, setError] = useState('none');
+    const [show, setShow] = useState('block');
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: '/' } };
 
     useEffect(() => {
-        fetch('http://localhost:5000/adminDetails')
+        fetch('https://blooming-tor-90457.herokuapp.com/adminDetails')
             .then(res => res.json())
             .then(data => setAdminsDetails(data))
     }, []);
@@ -52,6 +54,17 @@ const Login = () => {
                     <div className="login-style">
                         <div>
 
+                            <div style={{ display: show }} className="card pb-2">
+                                <div className="d-flex justify-content-between pb-2">
+                                    <strong><img src={infoEmoji} className="rounded me-2" alt="" />Important Information</strong>
+                                    <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close" onClick={() => setShow('none')}></button>
+                                </div>
+                                <div className="text-center">
+                                    <span>Email : test@test.com</span><br />
+                                    <span>Password : #2021dev</span>
+                                </div>
+                            </div>
+
                             <div>
                                 <h4 className="text-center">Login</h4>
                                 <form onSubmit={handleSubmit(onSubmitLogin)}>
@@ -70,8 +83,8 @@ const Login = () => {
 
                                     <br />
 
-                                    <div className="form-group pb-3 text-center" style={{display: error}}>
-                                        <span style={{color: 'red'}}>Email or Password In-Correct</span>
+                                    <div className="form-group pb-3 text-center" style={{ display: error }}>
+                                        <span style={{ color: 'red' }}>Email or Password In-Correct</span>
                                     </div>
 
                                     <div className="form-group pb-3">

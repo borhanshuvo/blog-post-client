@@ -31,7 +31,7 @@ const AddPost = () => {
 
         console.log(formData)
 
-        fetch('http://localhost:5000/addPost', {
+        fetch('https://blooming-tor-90457.herokuapp.com/addPost', {
             method: 'POST',
             body: formData
         })

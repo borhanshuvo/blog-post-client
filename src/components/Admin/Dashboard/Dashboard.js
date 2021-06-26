@@ -14,7 +14,7 @@ const Dashboard = () => {
     return (
         <div className="container mt-4">
             <div className='d-flex justify-content-between'>
-                <Link className="navbar-brand text-uppercase text-dark" to="/"><b>Blog Post</b></Link>
+                <Link className="navbar-brand text-uppercase text-dark" to="/"><b>Daily Blog</b></Link>
                 <h5 className="pt-1 pe-2">{loggedInUser.displayName}</h5>
             </div> <hr />
             <div className="row pt-4">
