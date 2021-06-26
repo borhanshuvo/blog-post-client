@@ -5,12 +5,20 @@ import Navbar from '../../Navbar/Navbar';
 const SingleBlogPost = () => {
 
     const { id } = useParams();
-    const [blogPost, setBlogPost] = useState({});
+    const [blogPost, setBlogPost] = useState({
+        title: '',
+        blogContent: '',
+        coverImage: ''
+    });
 
     useEffect(() => {
         fetch(`http://localhost:5000/singleBlogPost/${id}`)
             .then(res => res.json())
-            .then(data => setBlogPost(data))
+            .then(data => setBlogPost({
+                title: data.title,
+                blogContent: data.blogContent,
+                coverImage: data.coverImage.img
+            }))
     }, [id]);
     console.log(`object`, blogPost)
     return (
@@ -18,10 +26,12 @@ const SingleBlogPost = () => {
             <Navbar />
             <div className="container mt-5">
                 <div className="col-12 pb-5">
-                    {/* <img src={`data:image/png;base64,${blogPost.coverImage.img}`} className="img-fluid h-50" alt="" /> */}
+                    <div className="text-center pb-5 pt-5">
+                        <img src={`data:image/png;base64,${blogPost.coverImage}`} className="img-fluid h-50" alt="" />
+                    </div>
                     <div className="card-body text-center">
                         <h5 className="card-title pb-3">{blogPost.title}</h5>
-                        <p className="card-text text-start">{blogPost.blogContent}</p>
+                        <p className="card-text word-wrap text-start">{blogPost.blogContent}</p>
                     </div>
                 </div>
             </div>
